@@ -1,0 +1,28 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "phone_book",
+            "cwd": "phone_book",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "phone_book (profile mode)",
+            "cwd": "phone_book",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "phone_book (release mode)",
+            "cwd": "phone_book",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        }
+    ]
+}
