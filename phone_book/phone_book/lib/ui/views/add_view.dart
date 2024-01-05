@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:phone_book/ui/cubit/add_view_cubit.dart';
 
 class AddView extends StatefulWidget {
   const AddView({super.key});
@@ -10,15 +12,12 @@ class AddView extends StatefulWidget {
 class _HomeViewState extends State<AddView> {
   var tfName = TextEditingController();
   var tfNumber = TextEditingController();
-  Future<void> saved(String name, String phone) async {
-    print("$name - $phone");
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Kişi Ekle"),
+        title: const Text("Kişi Ekle"),
       ),
       body: Center(
         child: Padding(
@@ -28,17 +27,17 @@ class _HomeViewState extends State<AddView> {
             children: [
               TextField(
                 controller: tfName,
-                decoration: InputDecoration(hintText: "Kişi Adı"),
+                decoration: const InputDecoration(hintText: "Kişi Adı"),
               ),
               TextField(
                 controller: tfNumber,
-                decoration: InputDecoration(hintText: "Telefon Numarası"),
+                decoration: const InputDecoration(hintText: "Telefon Numarası"),
               ),
               ElevatedButton(
                   onPressed: () {
-                    saved(tfName.text, tfNumber.text);
+                    context.read<AddViewCubit>().saved(tfName.text, tfNumber.text);
                   },
-                  child: Text("Kaydet"))
+                  child: const Text("Kaydet"))
             ],
           ),
         ),

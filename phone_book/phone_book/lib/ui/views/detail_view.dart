@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:phone_book/data/entity/persons.dart';
+import 'package:phone_book/ui/cubit/detail_view_cubit.dart';
 
+// ignore: must_be_immutable
 class DetailView extends StatefulWidget {
   DetailView({super.key, required this.person});
   Persons person;
@@ -12,9 +15,6 @@ class DetailView extends StatefulWidget {
 class _HomeViewState extends State<DetailView> {
   var tfName = TextEditingController();
   var tfNumber = TextEditingController();
-  Future<void> updated(int id, String name, String phone) async {
-    print("$name - $phone");
-  }
 
   @override
   void initState() {
@@ -27,7 +27,7 @@ class _HomeViewState extends State<DetailView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Kişi Detayı"),
+        title: const Text("Kişi Detayı"),
       ),
       body: Center(
         child: Padding(
@@ -37,15 +37,15 @@ class _HomeViewState extends State<DetailView> {
             children: [
               TextField(
                 controller: tfName,
-                decoration: InputDecoration(hintText: "Kişi Adı"),
+                decoration: const InputDecoration(hintText: "Kişi Adı"),
               ),
               TextField(
                 controller: tfNumber,
-                decoration: InputDecoration(hintText: "Telefon Numarası"),
+                decoration: const InputDecoration(hintText: "Telefon Numarası"),
               ),
               ElevatedButton(
                   onPressed: () {
-                    updated(widget.person.id, tfName.text, tfNumber.text);
+                    context.read<DetailViewCubit>().updated(widget.person.id, tfName.text, tfNumber.text);
                   },
                   child: const Text("Güncelle"))
             ],

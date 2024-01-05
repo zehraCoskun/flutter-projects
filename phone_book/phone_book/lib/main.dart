@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:phone_book/ui/cubit/add_view_cubit.dart';
+import 'package:phone_book/ui/cubit/detail_view_cubit.dart';
+import 'package:phone_book/ui/cubit/home_view_cubit.dart';
 import 'package:phone_book/ui/views/home.dart';
 
 void main() {
@@ -11,14 +15,21 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => AddViewCubit()),
+        BlocProvider(create: (context) => DetailViewCubit()),
+        BlocProvider(create: (context) => HomeViewCubit()),
+      ],
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          useMaterial3: true,
+        ),
+        home: const HomeView(),
       ),
-      home: const HomeView(),
     );
   }
 }
