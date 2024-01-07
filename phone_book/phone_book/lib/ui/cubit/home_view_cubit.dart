@@ -19,6 +19,6 @@ class HomeViewCubit extends Cubit<List<Persons>> {
 
   Future<void> deletePerson(int id) async {
     await prepo.deletePerson(id);
-    await prepo.uploadPersons();
+    await uploadPersons();
   }
 }

@@ -13,7 +13,6 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-  
   bool isSearch = false;
   @override
   void initState() {
@@ -63,8 +62,9 @@ class _HomeViewState extends State<HomeView> {
                   padding: const EdgeInsets.symmetric(horizontal: 48.0),
                   child: GestureDetector(
                     onTap: () {
-                      print("${person.name} seçildi");
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => DetailView(person: person)));
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => DetailView(person: person))).then(
+                        (value) => context.read<HomeViewCubit>().uploadPersons(),
+                      );
                     },
                     child: Card(
                       child: SizedBox(
@@ -116,7 +116,7 @@ class _HomeViewState extends State<HomeView> {
         child: const Icon(Icons.add),
         onPressed: () {
           Navigator.push(context, MaterialPageRoute(builder: (context) => const AddView())).then(
-            (value) => print("geri dönüldü"), //then sayfaya geri dönüldüğünde yapılacak işleri düzenler
+            (value) => context.read<HomeViewCubit>().uploadPersons(), //then sayfaya geri dönüldüğünde yapılacak işleri düzenler
           );
         },
       ),

@@ -21,7 +21,7 @@ class MoviewDaoRepo {
 
   Future<List<Movies>> uploadMovies() async {
     var db = await DatabaseUtil.databaseAccess();
-    List<Map<String, dynamic>> maps = await db.rawQuery("SELECT * FROM PERSON");
+    List<Map<String, dynamic>> maps = await db.rawQuery("SELECT * FROM MOVIES");
     return List.generate(maps.length, (index) {
       var line = maps[index];
       return Movies(id: line["movie_id"], name: line["movie_name"], image: line["movie_image"], price: line["movie_price"]);
